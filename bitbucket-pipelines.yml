@@ -7,4 +7,4 @@ pipelines:
           clone:
             depth: full
           script:
-            - git push https://${GH_TOKEN}@github.com/${GH_USER}/${BITBUCKET_REPO_FULL_NAME##*/} ${BITBUCKET_BRANCH}
+            - git push -f https://${GH_TOKEN}@github.com/${GH_USER}/${BITBUCKET_REPO_FULL_NAME##*/} ${BITBUCKET_BRANCH}
