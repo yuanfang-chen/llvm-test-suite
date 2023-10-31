@@ -15,4 +15,4 @@ jobs:
       with:
         fetch-depth: '0'
     - name: sync bitbucket
-      run: git push --all ${{ secrets.BITBUCKET_URL }}
+      run: git push -f --all ${{ secrets.BITBUCKET_URL }}
