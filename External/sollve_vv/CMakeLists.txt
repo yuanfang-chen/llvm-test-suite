@@ -27,6 +27,7 @@ set(ALL_LIST_OPTIONS
   REGRESSION_REDLIST
 )
 
+# SUGON_DTK: begin
 set(FORTRAN
   4.5/application_kernels/declare_target_module.F90
   4.5/application_kernels/declare_target_subroutine.F90
@@ -281,6 +282,7 @@ set(FORTRAN
   5.2/misc/test_print_in_target_region.F90
   5.2/target_enter_data/test_target_enter_data_map.F90
 )
+# SUGON_DTK: end
 
 set(CHOOSEN_LISTS)
 
@@ -1149,8 +1151,10 @@ function (add_sollvevv LANG)
     set(_langext ".c")
   elseif ("${LANG}" STREQUAL "CXX")
     set(_langext ".cpp")
+  # SUGON_DTK: begin
   elseif ("${LANG}" STREQUAL "Fortran")
     set(_langext ".F90")
+  # SUGON_DTK: end
   else ()
     message(FATAL_ERROR "Unsupported languge ${LANG}")
   endif ()
@@ -1196,10 +1200,12 @@ if(TEST_SUITE_SOLLVEVV_ROOT AND NOT TEST_SUITE_BENCHMARKING_ONLY)
     return()
   endif()
 
+  # SUGON_DTK: begin
   if(TEST_SUITE_FORCE_ALL AND TEST_SUITE_FORTRAN)
     list(APPEND CHOOSEN_LISTS ${FORTRAN})
     message(STATUS "adding FORTRAN")
   endif()
+  # SUGON_DTK: end
 
   list(REMOVE_DUPLICATES SYSTEM_GPU)
   foreach(list_option ${SYSTEM_GPU})
@@ -1259,7 +1265,7 @@ if(TEST_SUITE_SOLLVEVV_ROOT AND NOT TEST_SUITE_BENCHMARKING_ONLY)
   endforeach()
   list(REMOVE_DUPLICATES CHOOSEN_LISTS)
 
-  foreach (_lang in C CXX Fortran)
+  foreach (_lang in C CXX Fortran) # SUGON_DTK
     if(CMAKE_${_lang}_COMPILER)
       add_sollvevv(${_lang})
     endif()
